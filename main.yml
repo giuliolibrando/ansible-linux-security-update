@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: false
+  
+  
+  tasks:
+  - name: list security updates
+    yum:
+        list: security
+    register: result
+
+  - debug:
+      var: result
+
+  - name: install security updates
+    yum:
+        name: '*'
+        security: yes
+        state: latest
