@@ -1,3 +1,3 @@
-# ansible-rhel-security-update
+# ansible-linux-security-update
 
-This Ansible project automatically install security updates on RedHat Enterprise Linux servers
+This Ansible project automatically install security updates on Linux servers based on Distro type
