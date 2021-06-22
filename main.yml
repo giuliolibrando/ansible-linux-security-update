@@ -31,14 +31,6 @@
     when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
 
 #UBUNTU
-  - name: DEB - Make a copy of security repos
-    shell: cat /etc/apt/sources.list|grep secu >/etc/apt/security.sources.list
-    become: true
-    become_user: root
-    become_method: sudo
-    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-    
-    
   - name: DEB - update apt list
     apt:
       update_cache: yes
@@ -47,6 +39,15 @@
     become_method: sudo
     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
+
+  - name: DEB - Make a copy of security repos
+    shell: cat /etc/apt/sources.list|grep secu >/etc/apt/security.sources.list
+    become: true
+    become_user: root
+    become_method: sudo
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    
+    
   - name: DEB - Install security updates
     shell: apt-get upgrade -oDir::Etc::SourceList=/etc/apt/security.sources.list --force-yes -y
     become: true
